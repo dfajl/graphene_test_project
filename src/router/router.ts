@@ -1,16 +1,17 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-//import HomeView from '@/views/HomeView.vue'; // создадим позже
+import MainPage from '@/pages/MainPage.vue';
+import UserCard from '@/components/UserCard.vue';
 
 const routes: RouteRecordRaw[] = [
+	/* {
+		path: '/',
+		name: 'MainPage',
+		component: () => MainPage,
+	}, */
 	{
 		path: '/',
-		name: 'Home',
-		//component: HomeView,
-	},
-	{
-		path: '/about',
-		name: 'About',
-		//component: () => import('@/views/AboutView.vue'), // ленивое подключение
+		name: 'UserCard',
+		component: () => UserCard,
 	},
 ];
 

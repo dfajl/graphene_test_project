@@ -1,23 +1,23 @@
+<script lang="ts" setup></script>
+
 <template>
 	<div class="app">
 		<routerView></routerView>
 	</div>
 </template>
 
-<script lang="ts" setup></script>
-
 <style lang="scss">
-	body {
-		font-family: 'Montserrat', sans-serif;
-		background: #e1e1e1;
-	}
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
+body {
+	font-family: 'Montserrat', sans-serif;
+	background: #bccdcfb3;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
-	.app {
-		padding: 20px;
-	}
+.app {
+	padding: 20px;
+}
 </style>
