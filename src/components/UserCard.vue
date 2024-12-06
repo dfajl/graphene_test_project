@@ -16,7 +16,7 @@
 import { ref } from 'vue';
 import UIButton from '@/components/UI/UIButton.vue';
 
-const userImage = ref('https://via.placeholder.com/150'); // Пример изображения
+const userImage = ref('https://via.placeholder.com/150');
 const userName = ref('John Doe');
 const userEmail = ref('john.doe@example.com');
 const userDescription = ref('');
@@ -25,7 +25,7 @@ const userDescription = ref('');
 <style scoped lang="scss">
 .user-card {
 	display: flex;
-	flex-wrap: wrap; /* Разделяем на строки для адаптивности */
+	flex-wrap: wrap;
 	margin: 2rem;
 	border: 1px solid #ccc;
 	border-radius: 10px;
@@ -34,7 +34,7 @@ const userDescription = ref('');
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 	&__left {
-		flex: 1 1 30%; /* Фиксированная ширина для изображения */
+		flex: 1 1 30%;
 		padding: 1rem;
 		display: flex;
 		justify-content: center;
@@ -42,7 +42,7 @@ const userDescription = ref('');
 	}
 
 	&__right {
-		flex: 2 1 65%; /* Оставшееся пространство для правой части карточки */
+		flex: 2 1 65%;
 		padding: 1rem;
 		display: flex;
 		flex-direction: column;
@@ -51,9 +51,9 @@ const userDescription = ref('');
 
 	&__image {
 		width: 100%;
-		max-width: 120px; /* Ограничение максимального размера изображения */
+		max-width: 200px;
 		height: auto;
-		border-radius: 50%;
+		border-radius: 5%;
 		object-fit: cover;
 	}
 
@@ -80,22 +80,6 @@ const userDescription = ref('');
 		font-size: 1rem;
 	}
 
-	&__button {
-		padding: 0.75rem 1.5rem;
-		font-size: 1rem;
-		border: none;
-		border-radius: 5px;
-		background-color: #4caf50;
-		color: white;
-		cursor: pointer;
-		transition: background-color 0.3s ease;
-
-		&:hover {
-			background-color: #45a049;
-		}
-	}
-
-	/* Адаптивность */
 	@media (max-width: 768px) {
 		.user-card {
 			flex-direction: column;
@@ -103,11 +87,11 @@ const userDescription = ref('');
 
 		.user-card__left,
 		.user-card__right {
-			flex: 1 1 100%; /* На маленьких экранах элементы занимают 100% ширины */
+			flex: 1 1 100%;
 		}
 
 		.user-card__image {
-			max-width: 80px; /* Уменьшаем изображение для мобильных устройств */
+			max-width: 80px;
 		}
 
 		.user-card__name {
@@ -119,18 +103,13 @@ const userDescription = ref('');
 		}
 
 		.user-card__textarea {
-			height: 80px; /* Уменьшаем высоту textarea для мобильных устройств */
-		}
-
-		.user-card__button {
-			width: 100%;
-			font-size: 1.1rem; /* Увеличиваем размер кнопки на мобильных устройствах */
+			height: 80px;
 		}
 	}
 
 	@media (max-width: 480px) {
 		.user-card__name {
-			font-size: 1.1rem; /* Еще меньше шрифт на самых маленьких экранах */
+			font-size: 1.1rem;
 		}
 
 		.user-card__email {
@@ -139,10 +118,6 @@ const userDescription = ref('');
 
 		.user-card__textarea {
 			height: 70px;
-		}
-
-		.user-card__button {
-			font-size: 1rem; /* Более компактная кнопка */
 		}
 	}
 }
