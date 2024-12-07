@@ -10,11 +10,20 @@ const props = defineProps({
 		type: String,
 		default: '0px',
 	},
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
 });
 </script>
 
 <template>
-	<button class="btn" :class="{ bold: isBoldFont }" :style="`margin-bottom: ${marginBottom};`">
+	<button
+		class="btn"
+		:class="{ bold: isBoldFont }"
+		:style="`margin-bottom: ${marginBottom};`"
+		:disabled="props.disabled"
+	>
 		<slot> Click </slot>
 	</button>
 </template>
@@ -33,6 +42,11 @@ const props = defineProps({
 	&:hover {
 		cursor: pointer;
 		background: rgba(96, 165, 245, 0.722);
+	}
+	&:disabled {
+		cursor: not-allowed;
+
+		opacity: 0.4;
 	}
 }
 .bold {

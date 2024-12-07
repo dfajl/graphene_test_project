@@ -1,25 +1,49 @@
 <template>
 	<div class="user-card">
 		<div class="user-card__left">
-			<img :src="userImage" alt="User Photo" class="user-card__image" />
+			<img :src="props.userInfo.avatar" alt="User Photo" class="user-card__image" />
 		</div>
 		<div class="user-card__right">
 			<h2 class="user-card__name">{{ userName }}</h2>
-			<p class="user-card__email">{{ userEmail }}</p>
-			<textarea v-model="userDescription" class="user-card__textarea" placeholder="Edit description"></textarea>
-			<UIButton>Save</UIButton>
+			<p class="user-card__email">{{ props.userInfo.email }}</p>
+			<UIPointsCounter v-model="pointsAmount" />
+
+			<UIInput
+				v-model="userDescription"
+				class="user-card__textarea"
+				:placeholder="'Edit description'"
+				:tag="'textarea'"
+			/>
+			<UIButton :disabled="!userDescription" @click="saveToLocalStorage">Save</UIButton>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { User } from '@/types/UserData';
 import UIButton from '@/components/UI/UIButton.vue';
+import UIInput from '@/components/UI/UIInput.vue';
+import UIPointsCounter from '@/components/UI/UIPointsCounter.vue';
 
-const userImage = ref('https://via.placeholder.com/150');
-const userName = ref('John Doe');
-const userEmail = ref('john.doe@example.com');
+const props = defineProps<{
+	userInfo: User;
+}>();
+
+const userName = computed(() => {
+	return `${props.userInfo.first_name} ${props.userInfo.last_name}`;
+});
 const userDescription = ref('');
+const pointsAmount = ref(0);
+
+const saveToLocalStorage = () => {
+	const data = {
+		description: userDescription.value,
+		points: pointsAmount.value,
+	};
+	localStorage.setItem(`${userName.value}`, JSON.stringify(data));
+	//alert('Data saved to localStorage!');
+};
 </script>
 
 <style scoped lang="scss">
@@ -32,6 +56,7 @@ const userDescription = ref('');
 	overflow: hidden;
 	background: #fff;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 40%;
 
 	&__left {
 		flex: 1 1 30%;
@@ -47,6 +72,10 @@ const userDescription = ref('');
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
+		h2,
+		p {
+			text-align: center;
+		}
 	}
 
 	&__image {
@@ -91,7 +120,7 @@ const userDescription = ref('');
 		}
 
 		.user-card__image {
-			max-width: 80px;
+			max-width: 150px;
 		}
 
 		.user-card__name {
@@ -104,6 +133,9 @@ const userDescription = ref('');
 
 		.user-card__textarea {
 			height: 80px;
+			width: 50%;
+			margin: 0 auto;
+			margin-bottom: 10px;
 		}
 	}
 

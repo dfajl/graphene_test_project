@@ -1,5 +1,7 @@
 <template>
-	<UserCard v-if="allUsers?.length" />
+	<div class="main-wrapper">
+		<UserCard v-if="allUsers?.length" v-for="user in allUsers" :user-info="user" />
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -14,4 +16,10 @@ const { allUsers } = storeToRefs(mainStore);
 mainStore.fetchUsers();
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+/* .main-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+} */
+</style>
