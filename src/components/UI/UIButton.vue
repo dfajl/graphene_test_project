@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue';
+import { defineProps, ref } from 'vue';
 
 const props = defineProps({
 	isBoldFont: {
@@ -15,10 +15,13 @@ const props = defineProps({
 		default: false,
 	},
 });
+const UIButton = ref(null);
+defineExpose({ UIButton });
 </script>
 
 <template>
 	<button
+		ref="UIButton"
 		class="btn"
 		:class="{ bold: isBoldFont }"
 		:style="`margin-bottom: ${marginBottom};`"
@@ -39,6 +42,7 @@ const props = defineProps({
 	transition: 0.2s linear;
 	color: #fff;
 	width: 30%;
+	border: none;
 	&:hover {
 		cursor: pointer;
 		background: rgba(96, 165, 245, 0.722);

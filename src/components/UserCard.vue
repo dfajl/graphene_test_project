@@ -42,7 +42,6 @@ const saveToLocalStorage = () => {
 		points: pointsAmount.value,
 	};
 	localStorage.setItem(`${userName.value}`, JSON.stringify(data));
-	//alert('Data saved to localStorage!');
 };
 </script>
 
@@ -51,6 +50,7 @@ const saveToLocalStorage = () => {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 2rem;
+	margin-right: 15rem;
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	overflow: hidden;
