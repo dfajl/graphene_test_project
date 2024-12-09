@@ -42,6 +42,7 @@ const saveToLocalStorage = () => {
 		points: pointsAmount.value,
 	};
 	localStorage.setItem(`${userName.value}`, JSON.stringify(data));
+	userDescription.value = '';
 };
 </script>
 
@@ -49,8 +50,7 @@ const saveToLocalStorage = () => {
 .user-card {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 2rem;
-	margin-right: 15rem;
+	margin: 0 auto;
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	overflow: hidden;

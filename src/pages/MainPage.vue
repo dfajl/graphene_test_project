@@ -2,7 +2,7 @@
 	<div class="main-wrapper" v-if="allUsers?.length">
 		<SideMenu :all-users="allUsers" @user-selected="handleUserSelected" />
 		<UserCard v-if="checkedUser" :user-info="checkedUser" />
-		<h1 v-else :style="{ marginRight: '15rem' }">Select a client!</h1>
+		<h1 v-else :style="{ margin: '0 auto' }">Select a client!</h1>
 	</div>
 </template>
 

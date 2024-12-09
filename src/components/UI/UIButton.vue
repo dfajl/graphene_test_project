@@ -2,14 +2,6 @@
 import { defineProps, ref } from 'vue';
 
 const props = defineProps({
-	isBoldFont: {
-		type: Boolean,
-		default: false,
-	},
-	marginBottom: {
-		type: String,
-		default: '0px',
-	},
 	disabled: {
 		type: Boolean,
 		default: false,
@@ -20,13 +12,7 @@ defineExpose({ UIButton });
 </script>
 
 <template>
-	<button
-		ref="UIButton"
-		class="btn"
-		:class="{ bold: isBoldFont }"
-		:style="`margin-bottom: ${marginBottom};`"
-		:disabled="props.disabled"
-	>
+	<button ref="UIButton" class="btn" :disabled="props.disabled">
 		<slot> Click </slot>
 	</button>
 </template>
@@ -49,11 +35,7 @@ defineExpose({ UIButton });
 	}
 	&:disabled {
 		cursor: not-allowed;
-
 		opacity: 0.4;
 	}
-}
-.bold {
-	font-weight: bold;
 }
 </style>

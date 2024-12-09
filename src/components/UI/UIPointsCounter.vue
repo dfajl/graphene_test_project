@@ -49,12 +49,13 @@ const model = defineModel<number>();
 	}
 
 	.points {
+		padding: 0.3rem;
 		border-radius: 5px;
 		text-align: center;
 		width: 100%;
 		background: #e5e5e5;
-		font-size: 1.2rem;
-		font-weight: bold;
+		font-size: 1rem;
+		font-weight: 400;
 		color: #333;
 	}
 	@media (max-width: 768px) {
