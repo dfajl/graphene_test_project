@@ -5,7 +5,7 @@
 			@user-selected="handleUserSelected"
 			:sorted-by-rating-users="sortedByRatingUsers"
 		/>
-		<UserCard v-if="checkedUser" :user-info="checkedUser" />
+		<UserCard v-if="checkedUser" :user-data="checkedUser" />
 		<h1 v-else :style="{ margin: '0 auto' }">Select a client!</h1>
 	</div>
 </template>

@@ -53,6 +53,12 @@ export const useMainStore = defineStore('mainStore', {
 				}
 			}
 		},
+		updateUserList(data: { description: string; points: number; id: number }) {
+			console.log(data);
+			const user = this.usersList?.find((item) => item.id === data.id);
+			user!.description = data.description;
+			user!.points = data.points;
+		},
 	},
 	getters: {
 		sortedByNameUsers(): ModifiedUser[] | null {

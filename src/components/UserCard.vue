@@ -1,11 +1,11 @@
 <template>
 	<div class="user-card">
 		<div class="user-card__left">
-			<img :src="props.userInfo.avatar" alt="User Photo" class="user-card__image" />
+			<img :src="props.userData.avatar" alt="User Photo" class="user-card__image" />
 		</div>
 		<div class="user-card__right">
 			<h2 class="user-card__name">{{ userName }}</h2>
-			<p class="user-card__email">{{ props.userInfo.email }}</p>
+			<p class="user-card__email">{{ props.userData.email }}</p>
 			<UIPointsCounter v-model="pointsAmount" />
 
 			<UIInput
@@ -25,20 +25,23 @@ import UIButton from '@/components/UI/UIButton.vue';
 import UIInput from '@/components/UI/UIInput.vue';
 import UIPointsCounter from '@/components/UI/UIPointsCounter.vue';
 import { ModifiedUser } from '@/stores/mainStore';
+import { useMainStore } from '@/stores/mainStore';
+
+const mainStore = useMainStore();
 
 const props = defineProps<{
-	userInfo: ModifiedUser;
+	userData: ModifiedUser;
 }>();
 
 const userName = computed(() => {
-	return `${props.userInfo.first_name} ${props.userInfo.last_name}`;
+	return `${props.userData.first_name} ${props.userData.last_name}`;
 });
-const userDescription = ref(props.userInfo.description);
-const pointsAmount = ref(props.userInfo.points);
+const userDescription = ref(props.userData.description);
+const pointsAmount = ref(props.userData.points);
 
 // меняем данные в карточке при новом юзере
 watch(
-	() => props.userInfo,
+	() => props.userData,
 	(newV) => {
 		userDescription.value = newV.description;
 		pointsAmount.value = newV.points;
@@ -51,6 +54,7 @@ const saveToLocalStorage = () => {
 		points: pointsAmount.value,
 	};
 	localStorage.setItem(`${userName.value}`, JSON.stringify(data));
+	mainStore.updateUserList({ ...data, id: props.userData.id });
 };
 </script>
 
