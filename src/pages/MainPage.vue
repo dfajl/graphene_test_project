@@ -1,6 +1,10 @@
 <template>
-	<div class="main-wrapper" v-if="allUsers?.length">
-		<SideMenu :all-users="allUsers" @user-selected="handleUserSelected" />
+	<div class="main-wrapper" v-if="sortedByNameUsers?.length">
+		<SideMenu
+			:sorted-by-name-users="sortedByNameUsers"
+			@user-selected="handleUserSelected"
+			:sorted-by-rating-users="sortedByRatingUsers"
+		/>
 		<UserCard v-if="checkedUser" :user-info="checkedUser" />
 		<h1 v-else :style="{ margin: '0 auto' }">Select a client!</h1>
 	</div>
@@ -15,14 +19,14 @@ import { storeToRefs } from 'pinia';
 
 const mainStore = useMainStore();
 
-const { allUsers } = storeToRefs(mainStore);
+const { sortedByNameUsers, sortedByRatingUsers } = storeToRefs(mainStore);
 
 mainStore.fetchUsers();
 
 const checkedUserId = ref(0);
 
 const checkedUser = computed(() => {
-	const usersCopy = [...allUsers.value];
+	const usersCopy = [...sortedByNameUsers.value];
 	return usersCopy.find((item) => item.id === checkedUserId.value);
 });
 

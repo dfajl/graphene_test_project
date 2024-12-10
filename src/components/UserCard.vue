@@ -20,21 +20,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { User } from '@/types/UserData';
+import { ref, computed, watch } from 'vue';
 import UIButton from '@/components/UI/UIButton.vue';
 import UIInput from '@/components/UI/UIInput.vue';
 import UIPointsCounter from '@/components/UI/UIPointsCounter.vue';
+import { ModifiedUser } from '@/stores/mainStore';
 
 const props = defineProps<{
-	userInfo: User;
+	userInfo: ModifiedUser;
 }>();
 
 const userName = computed(() => {
 	return `${props.userInfo.first_name} ${props.userInfo.last_name}`;
 });
-const userDescription = ref('');
-const pointsAmount = ref(0);
+const userDescription = ref(props.userInfo.description);
+const pointsAmount = ref(props.userInfo.points);
+
+// меняем данные в карточке при новом юзере
+watch(
+	() => props.userInfo,
+	(newV) => {
+		userDescription.value = newV.description;
+		pointsAmount.value = newV.points;
+	},
+);
 
 const saveToLocalStorage = () => {
 	const data = {
@@ -42,7 +51,6 @@ const saveToLocalStorage = () => {
 		points: pointsAmount.value,
 	};
 	localStorage.setItem(`${userName.value}`, JSON.stringify(data));
-	userDescription.value = '';
 };
 </script>
 

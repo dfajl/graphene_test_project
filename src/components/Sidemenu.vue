@@ -2,10 +2,10 @@
 	<div class="side-menu__wrapper">
 		<SideMenuHeader @list-view-selected="handleListViewSelected" />
 		<div class="user-list" ref="userListContainer">
-			<div class="user-list__item" v-for="user in allUsers" :key="user.id" @click="onUserClick(user.id)">
+			<div class="user-list__item" v-for="user in usersForRender" :key="user.id" @click="onUserClick(user.id)">
 				<div class="user-list__item__left">
 					<img :src="user.avatar" alt="User Photo" class="image" v-if="listView === 'client'" />
-					<span v-else-if="listView === 'rating'" class="image">{{ getRaiting(user) }}</span>
+					<span v-else-if="listView === 'rating'" class="digit">{{ user.points }}</span>
 					<span class="name">{{ user.first_name }} {{ user.last_name }}</span>
 				</div>
 				<div class="user-list__item__right">
@@ -19,16 +19,25 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { User } from '@/types/UserData';
+import { ModifiedUser } from '@/stores/mainStore';
 import UIButton from '@/components/UI/UIButton.vue';
 import SideMenuHeader from '@/components/SideMenuHeader.vue';
 
 const props = defineProps<{
-	allUsers: User[];
+	sortedByNameUsers: ModifiedUser[];
+	sortedByRatingUsers: ModifiedUser[];
 }>();
 
 const userListContainer = ref(null);
 const userListContainerBtn = ref(null);
+
+const usersForRender = computed(() => {
+	if (listView.value === 'client') {
+		return props.sortedByNameUsers;
+	} else {
+		return props.sortedByRatingUsers;
+	}
+});
 
 const emit = defineEmits<{
 	(event: 'user-selected', userId: number): void;
@@ -40,12 +49,7 @@ const onUserClick = (userId: number) => {
 const handleListViewSelected = (view: string) => {
 	listView.value = view;
 };
-const listView = ref('clients');
-
-const getRaiting = (user: User) => {
-	const item = localStorage.getItem(`${user.first_name} ${user.last_name}`);
-	return JSON.parse(item).points;
-};
+const listView = ref('client');
 </script>
 
 <style scoped lang="scss">
@@ -83,6 +87,11 @@ const getRaiting = (user: User) => {
 				.image {
 					width: 12%;
 					border-radius: 40%;
+					margin-right: 1rem;
+				}
+				.digit {
+					font-size: 1.5rem;
+					width: 12%;
 					margin-right: 1rem;
 				}
 				.name {

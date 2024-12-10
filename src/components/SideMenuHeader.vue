@@ -5,7 +5,7 @@
 			<UIButton data-view="rating" class="side-menu__btn" @click="emitListView">Rating</UIButton>
 		</div>
 		<div class="side-menu__input">
-			<UIInput />
+			<UIInput placeholder="Searching for clients" v-model="searchingModel" />
 		</div>
 	</div>
 </template>
@@ -17,7 +17,7 @@ import UIButton from '@/components/UI/UIButton.vue';
 import UIInput from '@/components/UI/UIInput.vue';
 
 const props = defineProps<{
-	//allUsers: User[];
+	//sortedByNameUsers: User[];
 }>();
 
 const emit = defineEmits<{
@@ -28,6 +28,8 @@ const emitListView = (event: MouseEvent) => {
 	const target = event.target as HTMLElement;
 	emit('list-view-selected', target.dataset.view);
 };
+
+const searchingModel = ref('');
 </script>
 
 <style scoped lang="scss">
