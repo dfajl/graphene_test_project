@@ -59,6 +59,10 @@ export const useMainStore = defineStore('mainStore', {
 			user!.description = data.description;
 			user!.points = data.points;
 		},
+		setSearchingModel(value: string) {
+			console.log(value);
+			this.searchingModel = value;
+		},
 	},
 	getters: {
 		sortedByNameUsers(): ModifiedUser[] | null {
@@ -74,6 +78,24 @@ export const useMainStore = defineStore('mainStore', {
 				const usersListCopy = [...this.usersList];
 				return usersListCopy.sort((user1: ModifiedUser, user2: ModifiedUser) => {
 					return -1 * (user1.points - user2.points);
+				});
+			} else return null;
+		},
+		filteredSortedByNameUsers(): ModifiedUser[] | null {
+			if (this.sortedByNameUsers?.length) {
+				const usersListCopy: ModifiedUser[] = [...this.sortedByNameUsers];
+				return usersListCopy.filter((user: ModifiedUser) => {
+					const fullName = `${user.first_name} ${user.last_name}`;
+					return fullName.toLowerCase().includes(this.searchingModel.toLowerCase());
+				});
+			} else return null;
+		},
+		filteredSortedByByRatingUsers(): ModifiedUser[] | null {
+			if (this.sortedByRatingUsers?.length) {
+				const usersListCopy: ModifiedUser[] = [...this.sortedByRatingUsers];
+				return usersListCopy.filter((user: ModifiedUser) => {
+					const fullName = `${user.first_name} ${user.last_name}`;
+					return fullName.toLowerCase().includes(this.searchingModel.toLowerCase());
 				});
 			} else return null;
 		},

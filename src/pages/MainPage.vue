@@ -1,9 +1,9 @@
 <template>
-	<div class="main-wrapper" v-if="sortedByNameUsers?.length">
+	<div class="main-wrapper" v-if="usersList?.length">
 		<SideMenu
-			:sorted-by-name-users="sortedByNameUsers"
+			:filtered-sorted-by-name-users="filteredSortedByNameUsers"
 			@user-selected="handleUserSelected"
-			:sorted-by-rating-users="sortedByRatingUsers"
+			:filtered-sorted-by-rating-users="filteredSortedByByRatingUsers"
 		/>
 		<UserCard v-if="checkedUser" :user-data="checkedUser" />
 		<h1 v-else :style="{ margin: '0 auto' }">Select a client!</h1>
@@ -19,14 +19,14 @@ import { storeToRefs } from 'pinia';
 
 const mainStore = useMainStore();
 
-const { sortedByNameUsers, sortedByRatingUsers } = storeToRefs(mainStore);
+const { filteredSortedByNameUsers, filteredSortedByByRatingUsers, usersList } = storeToRefs(mainStore);
 
 mainStore.fetchUsers();
 
 const checkedUserId = ref(0);
 
 const checkedUser = computed(() => {
-	const usersCopy = [...sortedByNameUsers.value];
+	const usersCopy = [...filteredSortedByNameUsers.value];
 	return usersCopy.find((item) => item.id === checkedUserId.value);
 });
 

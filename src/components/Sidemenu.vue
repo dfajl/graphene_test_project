@@ -12,7 +12,6 @@
 					<img src="@/assets/icons/ArrowRightIcon.svg" alt="Arrow Icon" class="arrow-icon" />
 				</div>
 			</div>
-			<UIButton class="update-button" ref="userListContainerBtn">Update list</UIButton>
 		</div>
 	</div>
 </template>
@@ -20,12 +19,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { ModifiedUser } from '@/stores/mainStore';
-import UIButton from '@/components/UI/UIButton.vue';
 import SideMenuHeader from '@/components/SideMenuHeader.vue';
 
 const props = defineProps<{
-	sortedByNameUsers: ModifiedUser[];
-	sortedByRatingUsers: ModifiedUser[];
+	filteredSortedByNameUsers: ModifiedUser[];
+	filteredSortedByRatingUsers: ModifiedUser[];
 }>();
 
 const userListContainer = ref(null);
@@ -33,9 +31,9 @@ const userListContainerBtn = ref(null);
 
 const usersForRender = computed(() => {
 	if (listView.value === 'client') {
-		return props.sortedByNameUsers;
+		return props.filteredSortedByNameUsers;
 	} else {
-		return props.sortedByRatingUsers;
+		return props.filteredSortedByRatingUsers;
 	}
 });
 

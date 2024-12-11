@@ -11,14 +11,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { User } from '@/types/UserData';
+import { ref, watch } from 'vue';
 import UIButton from '@/components/UI/UIButton.vue';
 import UIInput from '@/components/UI/UIInput.vue';
+import { useMainStore } from '@/stores/mainStore';
 
-const props = defineProps<{
-	//sortedByNameUsers: User[];
-}>();
+const mainStore = useMainStore();
 
 const emit = defineEmits<{
 	(event: 'list-view-selected', view: string): void;
@@ -30,6 +28,10 @@ const emitListView = (event: MouseEvent) => {
 };
 
 const searchingModel = ref('');
+
+watch(searchingModel, (value) => {
+	mainStore.setSearchingModel(value);
+});
 </script>
 
 <style scoped lang="scss">
