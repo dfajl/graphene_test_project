@@ -6,7 +6,7 @@
 			:filtered-sorted-by-rating-users="filteredSortedByByRatingUsers"
 		/>
 		<UserCard v-if="checkedUser" :user-data="checkedUser" />
-		<h1 v-else :style="{ margin: '0 auto' }">Select a client!</h1>
+		<h1 v-else class="fixedPosition">Select a client!</h1>
 	</div>
 </template>
 
@@ -41,5 +41,11 @@ const handleUserSelected = (userId: number) => {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	.fixedPosition {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-30%, -50%);
+	}
 }
 </style>

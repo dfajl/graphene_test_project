@@ -69,6 +69,10 @@ const saveToLocalStorage = () => {
 	background: #fff;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	width: 40%;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-30%, -50%);
 
 	&__left {
 		flex: 1 1 30%;
