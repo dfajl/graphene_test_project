@@ -6,7 +6,7 @@
 				<UIButton data-view="rating" class="side-menu-header__btn" @click="emitListView">Rating</UIButton>
 			</div>
 			<div class="side-menu-header__input">
-				<UIInput placeholder="Searching for clients" v-model="searchingModel" />
+				<UIInput placeholder="Searching" class="font-size" v-model="searchingModel" />
 			</div>
 		</div>
 		<div class="toggleMenuIcon">
@@ -56,6 +56,9 @@ watch(searchingModel, (value) => {
 	width: 110%;
 	align-items: self-start;
 	justify-content: space-between;
+	@media (max-width: 500px) {
+		width: 100%;
+	}
 
 	.side-menu-header {
 		padding: 1rem;
@@ -80,6 +83,21 @@ watch(searchingModel, (value) => {
 			&:hover {
 				background: #33a6fe00;
 			}
+			@media (max-width: 810px) {
+				font-size: 0.7rem;
+			}
+		}
+		&__input {
+			.font-size {
+				@media (max-width: 810px) {
+					font-size: 0.7rem;
+				}
+			}
+			.font-size {
+				@media (max-width: 650px) {
+					font-size: 0.6rem;
+				}
+			}
 		}
 	}
 	.toggleMenuIcon {
@@ -91,6 +109,9 @@ watch(searchingModel, (value) => {
 		transition: 0.3s linear;
 		&:hover {
 			box-shadow: 0 6px 6px rgba(0, 0, 0, 0.748);
+		}
+		@media (max-width: 500px) {
+			display: none;
 		}
 	}
 }

@@ -14,7 +14,7 @@
 				:placeholder="'Edit description'"
 				:tag="'textarea'"
 			/>
-			<UIButton :disabled="!userDescription" @click="saveToLocalStorage">Save</UIButton>
+			<UIButton class="font-size" :disabled="!userDescription" @click="saveToLocalStorage">Save</UIButton>
 		</div>
 	</div>
 </template>
@@ -55,6 +55,7 @@ const saveToLocalStorage = () => {
 	};
 	localStorage.setItem(`${userName.value}`, JSON.stringify(data));
 	mainStore.updateUserList({ ...data, id: props.userData.id });
+	alert('Data saved!');
 };
 </script>
 
@@ -88,6 +89,7 @@ const saveToLocalStorage = () => {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
+		width: 70%;
 		h2,
 		p {
 			text-align: center;
@@ -103,13 +105,13 @@ const saveToLocalStorage = () => {
 	}
 
 	&__name {
-		font-size: 1.5rem;
+		font-size: 1.2rem;
 		margin-bottom: 0.5rem;
 		font-weight: bold;
 	}
 
 	&__email {
-		font-size: 1rem;
+		font-size: 1.2rem;
 		margin-bottom: 1rem;
 		color: #666;
 	}
@@ -125,7 +127,7 @@ const saveToLocalStorage = () => {
 		font-size: 1rem;
 	}
 
-	@media (max-width: 768px) {
+	@media (max-width: 1000px) {
 		.user-card {
 			flex-direction: column;
 		}
@@ -140,7 +142,7 @@ const saveToLocalStorage = () => {
 		}
 
 		.user-card__name {
-			font-size: 1.25rem;
+			font-size: 1rem;
 		}
 
 		.user-card__email {
@@ -152,20 +154,114 @@ const saveToLocalStorage = () => {
 			width: 50%;
 			margin: 0 auto;
 			margin-bottom: 10px;
+			font-size: 0.7rem;
 		}
 	}
 
-	@media (max-width: 480px) {
+	@media (max-width: 768px) {
+		.user-card {
+			flex-direction: column;
+			left: 80%;
+		}
+
+		.user-card__left,
+		.user-card__right {
+			flex: 1 1 100%;
+		}
+
+		.user-card__image {
+			max-width: 150px;
+		}
+
 		.user-card__name {
-			font-size: 1.1rem;
+			font-size: 1rem;
 		}
 
 		.user-card__email {
-			font-size: 0.85rem;
+			font-size: 0.9rem;
+			text-align: center;
+		}
+
+		.user-card__textarea {
+			height: 80px;
+			width: 50%;
+			margin: 0 auto;
+			margin-bottom: 10px;
+			font-size: 0.7rem;
+		}
+	}
+
+	@media (max-width: 550px) {
+		.user-card__name {
+			font-size: 1rem;
+		}
+
+		.user-card__email {
+			font-size: 0.8rem;
 		}
 
 		.user-card__textarea {
 			height: 70px;
+		}
+		.font-size {
+			font-size: 0.8rem;
+			font-weight: 500;
+		}
+	}
+
+	@media (max-width: 500px) {
+		.user-card__name {
+			font-size: 0.7rem;
+		}
+
+		.user-card__email {
+			font-size: 0.7rem;
+		}
+
+		.user-card__textarea {
+			width: 80%;
+		}
+
+		.font-size {
+			font-size: 0.7rem;
+			font-weight: 500;
+		}
+	}
+
+	@media (max-width: 425px) {
+		.user-card {
+			width: 90%;
+			top: auto;
+			left: auto;
+			transform: none;
+			margin: 1rem auto;
+		}
+
+		.user-card__name {
+			font-size: 0.9rem;
+			text-align: center;
+		}
+
+		.user-card__email {
+			font-size: 0.75rem;
+			text-align: center;
+			margin-bottom: 0.5rem;
+		}
+
+		.user-card__textarea {
+			width: 100%;
+			height: 50px;
+			font-size: 0.8rem;
+			margin: 0 auto 0.5rem;
+		}
+
+		.user-card__image {
+			max-width: 80px;
+			border-radius: 50%;
+		}
+
+		.font-size {
+			font-size: 0.6rem;
 		}
 	}
 }

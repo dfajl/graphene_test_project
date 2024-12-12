@@ -61,10 +61,31 @@ const model = defineModel<number>();
 	@media (max-width: 768px) {
 		width: 30%;
 		.control-btn {
-			font-size: 0.3rem;
+			font-size: 0.7rem;
 		}
 		.points {
-			font-size: 1.2rem;
+			font-size: 1rem;
+		}
+	}
+	@media (max-width: 600px) {
+		width: 40%;
+		.control-btn {
+			padding: 0.5rem 0.7rem;
+		}
+		.points {
+			font-size: 0.8rem;
+		}
+	}
+	@media (max-width: 500px) {
+		width: 40%;
+		.points {
+			font-size: 0.7rem;
+		}
+	}
+	@media (max-width: 430px) {
+		width: 40%;
+		.points {
+			font-size: 0.7rem;
 		}
 	}
 }

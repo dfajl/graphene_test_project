@@ -70,6 +70,9 @@ const listView = ref('client');
 	flex-direction: column;
 	width: 30%;
 	height: 100%;
+	@media (max-width: 600px) {
+		width: 35%;
+	}
 	.user-list {
 		display: flex;
 		flex-direction: column;
@@ -100,21 +103,36 @@ const listView = ref('client');
 					width: 12%;
 					border-radius: 40%;
 					margin-right: 1rem;
+					@media (max-width: 768px) {
+						width: 30%;
+					}
 				}
 				.digit {
 					font-size: 1.5rem;
 					width: 12%;
 					margin-right: 1rem;
+					@media (max-width: 768px) {
+						font-size: 1rem;
+					}
 				}
 				.name {
 					font-size: 0.8rem;
 					margin-left: 0;
+					@media (max-width: 768px) {
+						font-size: 0.7rem;
+					}
+					@media (max-width: 600px) {
+						font-size: 0.6rem;
+					}
 				}
 			}
 			&__right {
 				margin-left: auto;
 				.arrow-icon {
 					height: 1.2rem;
+					@media (max-width: 768px) {
+						display: none;
+					}
 				}
 			}
 		}

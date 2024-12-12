@@ -46,6 +46,10 @@ const handleUserSelected = (userId: number) => {
 		top: 50%;
 		left: 50%;
 		transform: translate(-30%, -50%);
+		@media (max-width: 600px) {
+			font-size: 1.5rem;
+			left: 60%;
+		}
 	}
 }
 </style>
