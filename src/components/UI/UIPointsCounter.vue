@@ -28,6 +28,15 @@ const model = defineModel<number>();
 	align-items: center;
 	justify-content: center;
 	gap: 1rem;
+	@media (max-width: 768px) {
+		width: 40%;
+	}
+	@media (max-width: 700px) {
+		width: 50%;
+	}
+	@media (max-width: 500px) {
+		width: 40%;
+	}
 
 	.control-btn {
 		background-color: #a1a1a1;
@@ -46,6 +55,13 @@ const model = defineModel<number>();
 		&:active {
 			background-color: #1d6a96;
 		}
+		@media (max-width: 768px) {
+			font-size: 0.7rem;
+		}
+		@media (max-width: 600px) {
+			font-size: 0.6rem;
+			padding: 0.3rem 0.8rem;
+		}
 	}
 
 	.points {
@@ -57,34 +73,13 @@ const model = defineModel<number>();
 		font-size: 1rem;
 		font-weight: 400;
 		color: #333;
-	}
-	@media (max-width: 768px) {
-		width: 30%;
-		.control-btn {
-			font-size: 0.7rem;
-		}
-		.points {
+		@media (max-width: 768px) {
 			font-size: 1rem;
 		}
-	}
-	@media (max-width: 600px) {
-		width: 40%;
-		.control-btn {
-			padding: 0.5rem 0.7rem;
-		}
-		.points {
+		@media (max-width: 600px) {
 			font-size: 0.8rem;
 		}
-	}
-	@media (max-width: 500px) {
-		width: 40%;
-		.points {
-			font-size: 0.7rem;
-		}
-	}
-	@media (max-width: 430px) {
-		width: 40%;
-		.points {
+		@media (max-width: 500px) {
 			font-size: 0.7rem;
 		}
 	}
