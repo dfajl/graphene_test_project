@@ -7,6 +7,7 @@
 		<UserCard v-if="checkedUser" :user-data="checkedUser" />
 		<h1 v-else class="fixedPosition">Select a client!</h1>
 	</div>
+	<div v-else class="loading">Загрузка...</div>
 </template>
 
 <script setup lang="ts">
@@ -47,5 +48,12 @@ const checkedUser = computed(() => {
 			left: 60%;
 		}
 	}
+}
+.loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 2rem;
 }
 </style>

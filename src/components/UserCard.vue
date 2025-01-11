@@ -22,12 +22,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, inject } from 'vue';
 import UIButton from '@/components/UI/UIButton.vue';
 import UIInput from '@/components/UI/UIInput.vue';
 import UIPointsCounter from '@/components/UI/UIPointsCounter.vue';
 import { ModifiedUser } from '@/stores/mainStore';
 import { useMainStore } from '@/stores/mainStore';
+
+// внедряю функцию содания тостов из main.ts
+const addToast = inject<(message: string, type: 'success' | 'error') => void>('addToast');
+
+if (!addToast) {
+	console.error('Не удалось инжектировать addToast.');
+}
+
+const triggerToast = () => {
+	if (addToast) {
+		addToast('Data saved!', 'success');
+	}
+};
 
 const mainStore = useMainStore();
 
@@ -57,7 +70,7 @@ const saveToLocalStorage = () => {
 	};
 	localStorage.setItem(`${userName.value}`, JSON.stringify(data));
 	mainStore.updateUserList({ ...data, id: props.userData.id });
-	alert('Data saved!');
+	triggerToast();
 };
 </script>
 
